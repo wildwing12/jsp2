@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>jsp01</display-name>
+  
+  <servlet>
+    <servlet-name>snac</servlet-name>
+    <servlet-class>snac.SnacServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>snac</servlet-name>
+    <url-pattern>/snac_servlet/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>member</servlet-name>
+    <servlet-class>member.MemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>member</servlet-name>
+    <url-pattern>/member_servlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>memo</servlet-name>
+    <servlet-class>memo.MemoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memo</servlet-name>
+    <url-pattern>/memo_servlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>while</servlet-name>
+    <servlet-class>ch01.WhileController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>while</servlet-name>
+    <url-pattern>/ch01_servlet/*</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
