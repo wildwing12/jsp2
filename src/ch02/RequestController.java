@@ -38,7 +38,7 @@ public class RequestController extends HttpServlet {
 		System.out.println(map);//콘솔에  출력해봄
 		
 		request.setAttribute("map", map);//전달할 데이터 저장("변수명",값);
-		String page="/ch02/request_result.jsp";
+		String page="/ch02/request_result2.jsp";
 		RequestDispatcher rd=request.getRequestDispatcher(page);
 		rd.forward(request, response);//foward방식은 화면전환(주소는 고정), 대용량 데이터 전송 가능
 		
