@@ -2,6 +2,14 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>jsp01</display-name>
   <servlet>
+    <servlet-name>forward</servlet-name>
+    <servlet-class>ch03.ForwardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>forward</servlet-name>
+    <url-pattern>/ch03_servlet/forward.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>snac</servlet-name>
     <servlet-class>snac.SnacServlet</servlet-class>
   </servlet>
@@ -34,6 +42,7 @@
     <url-pattern>/ch01_servlet/*</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
+    <welcome-file>main.html</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
