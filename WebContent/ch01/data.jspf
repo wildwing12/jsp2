@@ -1,8 +1,0 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-String name ="홍길동";
-int age = 33;
-String email="hong@gmail.com";
-String hp="010-111-1234";
-%>
