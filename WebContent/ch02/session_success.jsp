@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../include/jquery-3.3.1.min.js"></script>
-<%String context=request.getContextPath(); %>
+<%request.setCharacterEncoding("utf-8");
+String context=request.getContextPath();%>
 <%@ include file="../include/session_check.jsp" %>
 <script type="text/javascript">
 	$(function(){

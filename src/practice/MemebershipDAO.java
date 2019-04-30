@@ -7,23 +7,23 @@ import java.sql.SQLException;
 
 import config.DB;
 
-public class LoginDAO {
-	public String loginCheck(String userid, String passwd) {
+public class MemebershipDAO {
+	public String loginCheck(String id, String pwd) {
 		String name=null;
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		ResultSet rs= null;
+		ResultSet rs=null;
 		try {
-			conn=DB.getConn();//DB커넥션
-			String sql="select name from member " + 
-					" where userid=? and passwd=?";
+			conn=DB.getConn();
+			String sql="select name from membership where id=? and pwd=?";
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, userid);
-			pstmt.setString(2, passwd);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				name=rs.getString("name");
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -42,8 +42,6 @@ public class LoginDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
-			
 		}
 		return name;
 	}

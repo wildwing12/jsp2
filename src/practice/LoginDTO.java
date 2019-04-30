@@ -1,15 +1,9 @@
 package practice;
 
 public class LoginDTO {
+	private String userid; 
+	private String passwd; 
 	private String name;
-	private String userid;
-	private String passwd;
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getUserid() {
 		return userid;
 	}
@@ -22,20 +16,24 @@ public class LoginDTO {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	public LoginDTO(String name, String userid, String passwd) {
-		super();
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
 		this.name = name;
-		this.userid = userid;
-		this.passwd = passwd;
+	}
+	public String toString() {
+		return "LoginDTO [userid=" + userid + ", passwd=" + passwd + ", name=" + name + "]";
 	}
 	public LoginDTO() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "LoginDTO [name=" + name + ", userid=" + userid + ", passwd=" + passwd + "]";
-	}
+	public LoginDTO(String userid, String passwd, String name) {
+		this.userid = userid;
+		this.passwd = passwd;
+		this.name = name;
+	} 
+	
+	
 	
 	
 }
