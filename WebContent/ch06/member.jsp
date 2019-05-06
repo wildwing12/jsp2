@@ -35,9 +35,9 @@ function insert(){
 			$("#name").val("");
 			$("#email").val("");
 			$("#hp").val("");
-			$("#zipcode").val("zipcode");
-			$("#address1").val();
-			$("#address2").val();
+			$("#zipcode").val("");
+			$("#address1").val("");
+			$("#address2").val("");
 			
 		}
 	});
