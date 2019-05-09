@@ -43,7 +43,8 @@ public class MemberController extends HttpServlet {
 			//최종적으로 map에 담긴값을 setAttribute에 저장
 			request.setAttribute("map", map);//key,value
 			//출력을 위해 포워딩할 uri지정
-			String page="/ch06/member_list.jsp";
+			//String page="/ch06/member_list.jsp";
+			String page="/ch08/member_list2.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);//포워딩
 		}else if(uri.indexOf("join.do") != -1) {//회원등록
