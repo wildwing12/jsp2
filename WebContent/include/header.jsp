@@ -10,8 +10,9 @@ jsp내부의 복잡한 자바 코드를 대체하기 위한 태크
   예)prefix="c"
  -->
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
  <!-- set var="변수명" value="값" -->
  <c:set var="path" value="${pageContext.request.contextPath }" />
- 
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- 위와 같은 코드를 워낙 자주 쓰이다 보니 header에 넣고 include시킴 
 <%-- <% String path=request.getContextPath(); %> --%>%>-->

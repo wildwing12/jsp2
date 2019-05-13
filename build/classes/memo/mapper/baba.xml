@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- xml 지시어, 첫라인, 공백x , 이 파일은 설명 파일이다.-->
+<!-- 현재 xml 문서의 dtd(문서타입)을 선언 -->
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:sql 명령어들의 집합, java의 패키지와 같은 개념, 
+sql을 사용하기 전 회원관리, 게시판, 메모장..... 등 구분 짓기 위해서 주로 사용됨.
+-->
+<mapper namespace="memo">
+<!-- id:프로그램에서 호출하는 변수명
+resultType : select 명령어의 리턴 타입 (즉, 레코드 타입) -->
+	<select id="listAll" resultType="memo.dto.MemoDTO">
+    select idx,writer,memo
+			,to_char(post_date,'yyyy-mm-dd hh24:mi:ss') post_date 
+		from memo
+		where memo like '%'||#{search}||'%' or writer like
+		'%'||#{search}||'%'
+		order by idx desc
+  </select>
+  <select id="list" resultType="memo.dto.MemoDTO">
+  	select idx,writer,memo,to_char(post_date,'yyyy-MM-dd hh24:mi:ss')
+	post_date from memo
+	where ${searchkey} like '%'||#{search}||'%'
+	order by idx desc
+	<!-- #{search}는 '철수' 이렇게 표현되어야 하기 때문에 #을 써야 하지만
+		${search}에서 #{searchkey}을 쓰면 따옴표가 포함되기 때문에 where절에서 'writer'가 되어 필드명이 아니라 스트링이된다.
+		따라서 따옴표가 포함되지 않는 방식인 ${}을 써야 한다. -->
+  </select>
+  
+	<!-- parameterType="memo.dto.memoDTO"은 생략 가능 -->
+	<insert id="insert" parameterType="memo.dto.memoDTO">
+  	insert into memo ( idx, writer, memo )
+  	values ( (select nvl( max(idx)+1, 1) from memo)
+  	, #{writer}, #{memo})
+  </insert>
+  <!-- 
+  $()JQuery의 선택자
+  ${} EL변수
+  #{변수} mybatis 변수(따옴표 미포함) ex)#{memo} 
+   =>getMomo()를 호출하는 효과도 포함
+  ${변수} mybatis 변수 (따옴표 포함) ex)${'memo'}-->
+</mapper>
