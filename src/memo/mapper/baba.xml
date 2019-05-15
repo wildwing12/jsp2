@@ -17,6 +17,11 @@ resultType : select 명령어의 리턴 타입 (즉, 레코드 타입) -->
 		'%'||#{search}||'%'
 		order by idx desc
   </select>
+  <select id="view" parameterType="int" resultType="memo.dto.MemoDTO">
+  	select*from memo where idx=#{idx}
+  </select>
+  <!-- parameterType 입력 매개 변수의 자료형 (생략 가능)
+  	resultType 리턴 타입의 자료형(레코드 자료형) -->
   <select id="list" resultType="memo.dto.MemoDTO">
   	select idx,writer,memo,to_char(post_date,'yyyy-MM-dd hh24:mi:ss')
 	post_date from memo

@@ -12,7 +12,7 @@
 <table border="1" width="500px">
  <tr>
  	<th>번호</th>
- 	<th>이름</th>
+ 	<th width="20%">이름</th>
  	<th width="50%">메모</th>
  	<th>날짜</th>
  </tr>
@@ -21,7 +21,7 @@
  <tr>
  <td>${row.idx}</td>
  <td>${row.writer}</td>
- <td>${row.memo}</td>
+ <td><a href="${path}/memo_servlet/view.do?idx=${row.idx}">${row.memo}</a></td>
  <td>${row.post_date}</td>
 </tr>
 </c:forEach>

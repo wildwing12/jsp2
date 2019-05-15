@@ -34,6 +34,22 @@ public class MemoDAO {
 				//입력 매개 변수는 1개만 전달 할 수 있음
 				//(searchkey,search)두개를 쓸 수 없다.
 				list=session.selectList("memo.list", map);
+				for(MemoDTO dto : list) {
+					String memo=dto.getMemo();
+					//공백 문자 처리
+					memo=memo.replace("   ", "&nbsp;&nbsp;");//insert보다 여기서 처리해주는 것이 좋다.
+					//태그 문자 처리
+					memo=memo.replace("<", "&lt;");
+					memo=memo.replace(">", "&gt;");
+					//키워드에 색상 처리
+					if(searchkey.equals("memo")) {
+						if(memo.indexOf(search)!=-1) {
+							memo=memo.replace(search, "<font color='red'>"+search+"</font>");
+						}
+					}
+					
+					dto.setMemo(memo);
+				}
 			}
 			
 		} catch (Exception e) {
@@ -47,8 +63,41 @@ public class MemoDAO {
 	public void insertMemo(MemoDTO dto) {
 		//mybatis 실행 객체 생성
 		SqlSession session=MybatisManager.getInstance().openSession();
+		//이름 입력영역도 추가 처리
+//		String writer=dto.getWriter();
+//		String memo=dto.getMemo();
+//		//공백 문자 처리(스페이스 2개 변환)
+//		writer=writer.replace("  ", "&nbsp;&nbsp;");
+//		//메모 영역 처리
+//		memo=memo.replace("  ", "&nbsp;&nbsp;");
+//		//태그문자 처리
+//		memo=memo.replace("<", "&lt;");//less than ~
+//		memo=memo.replace(">", "&gt;");//Greater than
+//		dto.setMemo(memo);
 		session.insert("memo.insert", dto);//레코드 추가, insert메소드는  파라미터 1개 밖에 허용안됨
 		session.commit();//수동커밋, mybaties는 자동 커밋을 막았다.
+		session.close();
+	}
+	public MemoDTO viewMemo(int idx) {
+		SqlSession session=MybatisManager.getInstance().openSession();
+		MemoDTO dto=session.selectOne("memo.view",idx);
+		//selectOne() 레코드 1개만 가져올때
+		//selectList() 레코드 2개 이상 가져올떄(목록을 가져올떄)
+		session.close();
+		return dto;
+	}
+
+	public void updateMemo(MemoDTO dto) {
+		SqlSession session=MybatisManager.getInstance().openSession();
+		session.update("memo.update", dto);
+		session.commit();//select가 아닌 경우는 수동 커밋을 해주어야 한다.
+		session.close();			
+	}
+
+	public void deleteMemo(int idx) {
+		SqlSession session=MybatisManager.getInstance().openSession();
+		session.delete("memo.delete", idx);
+		session.commit();
 		session.close();
 	}
 }

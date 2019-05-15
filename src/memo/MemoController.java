@@ -41,6 +41,33 @@ public class MemoController extends HttpServlet {
 			dto.setWriter(writer);
 			dto.setMemo(memo);
 			dao.insertMemo(dto);
+		}else if(url.indexOf("view.do")!=-1) {
+			int idx=Integer.parseInt(request.getParameter("idx"));
+			System.out.println("글번호:"+idx);
+			//글번호에 해당하는 레코드가 dto에 저장됨.
+			MemoDTO dto=dao.viewMemo(idx);
+			//request영역에 저장
+			request.setAttribute("dto", dto);
+			//pageContext<request<session<application
+			String page="/memo/memo_view.jsp";
+			//포워딩(주소는 그대로, 화면만 이동)
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		}else if(url.indexOf("update.do")!=-1) {
+			int idx=Integer.parseInt(request.getParameter("idx"));
+			String writer=request.getParameter("writer");
+			String memo=request.getParameter("memo");
+			MemoDTO dto=new MemoDTO();
+			dto.setIdx(idx);
+			dto.setWriter(writer);
+			dto.setMemo(memo);
+			dao.updateMemo(dto);//레코드 수정
+			response.sendRedirect(request.getContextPath()+"/memo/memo.jsp");
+		}else if(url.indexOf("delete.do")!=-1) {
+			int idx=Integer.parseInt(request.getParameter("idx"));
+			dao.deleteMemo(idx);
+			//페이지 이동
+			response.sendRedirect(request.getContextPath()+"/memo/memo.jsp");
 		}
 	}
 
