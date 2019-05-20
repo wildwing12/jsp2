@@ -8,14 +8,10 @@
 </head>
 <body>
 <%
-//쿠키 수정(value만 수정), 삭제 함수는 없음. 
-response.addCookie(new Cookie("id","lee"));
-response.addCookie(new Cookie("pwd","5678"));
-response.addCookie(new Cookie("age", "30"));
-response.addCookie(new Cookie("hp", "010-3333-4444"));
-
+//쿠키 수정(value만 수정),삭제 함수는 없음
+response.addCookie(new Cookie("id","park"));
 %>
-아이디 :${cookie.id.value}<br>
+아이디 : ${cookie.id.value}<br>
 쿠키가 변경되었습니다.<br>
 <a href="useCookie.jsp">쿠키 확인</a>
 </body>
